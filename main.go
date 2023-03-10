@@ -32,11 +32,7 @@ func main() {
 			}
 
 			tw = parseRowForPlayer("Tiger Woods", row)
-			if tw.Name != "" {
-				return false
-			}
-
-			return true
+			return tw.Name != ""
 		})
 		e.ForEachWithBreak("tr", func(idx int, row *colly.HTMLElement) bool {
 			if idx == 0 {
@@ -44,11 +40,7 @@ func main() {
 			}
 
 			js = parseRowForPlayer("Jordan Spieth", row)
-			if js.Name != "" {
-				return false
-			}
-
-			return true
+			return js.Name != ""
 		})
 		fmt.Println("first place:", fp)
 		fmt.Println("tw:", tw)
@@ -66,7 +58,7 @@ func main() {
 		fmt.Println("Visiting", r.URL)
 	})
 
-	c.Visit("https://www.espn.com/golf/leaderboard?tournamentId=401353232")
+	c.Visit("https://www.espn.com/golf/leaderboard?tournamentId=401465526")
 }
 
 func parseFirstPlace(e *colly.HTMLElement) *Player {

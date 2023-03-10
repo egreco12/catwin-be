@@ -1,0 +1,11 @@
+CREATE TABLE Tournaments (
+    Id INTEGER NOT NULL PRIMARY KEY,
+    Name NVARCHAR NOT NULL
+);
+CREATE TABLE Scores (
+    TournamentId INTEGER NOT NULL,
+    PlayerName NVARCHAR NOT NULL,
+    TotalScore INTEGER NOT NULL,
+    ScoreToPar INTEGER NOT NULL,
+    Cut BOOLEAN NOT NULL
+);
