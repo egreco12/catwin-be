@@ -134,6 +134,8 @@ interface Sport {
 
 }
 
-interface Sports {
-  sport: Sports;
-};
+interface Response {
+  sports: Sport[];
+}
+
+export {Response, Sport, League, Event, Competitor, CompetitorStatus, Broadcast, EventLink, FullStatus, FullStatusType};

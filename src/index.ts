@@ -1,5 +1,5 @@
 import express from "express";
-import {Player, Tournament, Tournaments} from "./Tournaments";
+import {Tournaments} from "./Tournaments";
 const app = express();
 const port = 8080; // default port to listen
 

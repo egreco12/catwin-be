@@ -1,24 +1,15 @@
-class Player {
-  TotalScoreToPar: number;
-  Name: string;
-}
+import {Response} from "./Espn";
 
-class Tournament {
-  Id: number;
-  Name: string;
-  Participants: Player[];
-};
 
 const EspnEndpoint = "https://site.web.api.espn.com/apis/v2/scoreboard/header\?sport\=golf\&league\=pga\&region\=us\&lang\=en";
 
 class Tournaments {
-  public static async FetchTournaments(): Promise<Tournament[]> {
+  public static async FetchTournaments(): Promise<Response> {
     const response = await fetch(EspnEndpoint);
-    const {data, errors} = await response.json();
+    const data = await response.json();
 
-    let tournament = new Tournament;
-    return [tournament];
+    return data as Response;
   }
 }
 
-export {Player, Tournament, Tournaments};
+export {Tournaments};
