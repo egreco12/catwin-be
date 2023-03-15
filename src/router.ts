@@ -3,7 +3,7 @@ import { ObjectId } from "mongodb";
 import { collections } from "./services";
 import { EntrySport, Sport } from "./models/espn";
 
-const EspnEndpoint = "https://site.web.api.espn.com/apis/v2/scoreboard/header\?sport\=golf\&league\=pga\&region\=us\&lang\=en";
+const EspnEndpoint = "https://site.web.api.espn.com/apis/site/v2/sports/golf/leaderboard?league=pga&region=us&lang=en";
 
 export const router = express.Router();
 router.use(express.json());
@@ -29,7 +29,6 @@ router.get("/load", async (_req: Request, res: Response) => {
   } catch (error) {
     console.error(error);
   }
-
 });
 
 router.post("/", async (req: Request, res: Response) => {
