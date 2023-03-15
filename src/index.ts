@@ -1,5 +1,4 @@
 import express from "express";
-import {Tournaments} from "./tournaments";
 import { connectToDatabase } from "./services"
 import { router } from "./router";
 const app = express();
