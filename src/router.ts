@@ -11,7 +11,7 @@ router.use(express.json());
 router.get("/", async (_req: Request, res: Response) => {
   try {
     const sports = (await collections.sports.find({}).toArray()) as unknown as Sport[];
-    res.status(200).send(sports);
+    res.status(200).send(sports[0].events[0]);
   } catch (error) {
     res.status(500).send(error.message);
   }

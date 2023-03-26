@@ -2,7 +2,7 @@ import express from "express";
 import { connectToDatabase } from "./services"
 import { router } from "./router";
 const app = express();
-const port = 8080; // default port to listen
+const port = 8081; // default port to listen
 
 connectToDatabase()
     .then(() => {

@@ -131,6 +131,7 @@ interface Sport {
   name: string;
   slug: string;
   leagues: League[];
+  events: Event[];
 
 }
 
