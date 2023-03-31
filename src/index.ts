@@ -2,7 +2,7 @@ import express from "express";
 import { connectToDatabase } from "./services"
 import { router } from "./router";
 const app = express();
-const port = 8081; // default port to listen
+const PORT = process.env.PORT || 8080;
 
 connectToDatabase()
     .then(() => {
@@ -16,8 +16,8 @@ connectToDatabase()
 
         app.use("/events", router);
 
-        app.listen(port, () => {
-            console.log(`Server started at http://localhost:${port}`);
+        app.listen(PORT, () => {
+            console.log(`Server started at http://localhost:${PORT}`);
         });
     })
     .catch((error: Error) => {

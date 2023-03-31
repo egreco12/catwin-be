@@ -1,0 +1,8 @@
+# [START app_yaml]
+runtime: nodejs18
+service: catwin-be
+env_variables:
+  DB_CONN_STRING: <conn_string>
+  DB_NAME: "catwin"
+  SPORTS_COLLECTION_NAME: "events"
+# [END app_yaml]
