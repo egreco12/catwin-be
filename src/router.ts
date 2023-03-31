@@ -10,8 +10,9 @@ router.use(express.json());
 
 router.get("/", async (_req: Request, res: Response) => {
   try {
-    const sports = (await collections.sports.find({}).toArray()) as unknown as Sport[];
-    res.status(200).send(sports[0].events[0]);
+    const events = await collections.events.find({}).toArray() as unknown as Event[];
+    console.log(events);
+    res.status(200).send(events[0]);
   } catch (error) {
     res.status(500).send(error.message);
   }
@@ -19,28 +20,30 @@ router.get("/", async (_req: Request, res: Response) => {
 
 router.get("/load", async (_req: Request, res: Response) => {
   const response = await fetch(EspnEndpoint);
-  const data = await response.json();
+  const data = await response.json() as Sport;
   try {
-    const result = await collections.sports.insertOne(data as EntrySport);
-
+    // Look for existing event.  If it exists, save over old entry
+    const event = data.events[0];
+    collections.events.findOneAndUpdate
+    const result = await collections.events.replaceOne({id: event.id}, event, {upsert: true});
     result
-      ? res.status(201).send(`Successfully created a new sport with id ${result.insertedId}`)
+      ? res.status(201).send(`Successfully created a new sport with id ${result.upsertedId}`)
       : res.status(500).send("Failed to create a new sport.");
   } catch (error) {
     console.error(error);
   }
 });
 
-router.post("/", async (req: Request, res: Response) => {
-  try {
-    const newSport = req.body as Sport;
-    const result = await collections.sports.insertOne(newSport);
+// router.post("/", async (req: Request, res: Response) => {
+//   try {
+//     const newSport = req.body as Sport;
+//     const result = await collections.sports.insertOne(newSport);
 
-    result
-      ? res.status(201).send(`Successfully created a new sport with id ${result.insertedId}`)
-      : res.status(500).send("Failed to create a new sport.");
-  } catch (error) {
-    console.error(error);
-    res.status(400).send(error.message);
-  }
-});
+//     result
+//       ? res.status(201).send(`Successfully created a new sport with id ${result.insertedId}`)
+//       : res.status(500).send("Failed to create a new sport.");
+//   } catch (error) {
+//     console.error(error);
+//     res.status(400).send(error.message);
+//   }
+// });

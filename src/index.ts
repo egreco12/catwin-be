@@ -13,8 +13,8 @@ connectToDatabase()
             res.setHeader('Access-Control-Allow-Credentials', "true");
             next();
         });
-        
-        app.use("/sports", router);
+
+        app.use("/events", router);
 
         app.listen(port, () => {
             console.log(`Server started at http://localhost:${port}`);
